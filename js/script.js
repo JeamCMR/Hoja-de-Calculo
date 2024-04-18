@@ -1,8 +1,26 @@
 /**VARIABLES */
 
+//Validar si un numero es par o impar, devuelve un boolean
+const isEven = (num) => num % 2 === 0 ? true : false
+
 //Funcion suma
 const sum = (nums) =>
   nums.reduce((acomulador, valorActual) => acomulador + valorActual, 0);
+
+//Calcular promedio de los elementos de un array
+const average = (nums) => sum(nums) / nums.length;
+
+
+//Calcular la media de los elementos de un array
+const median = (nums) => {
+  const sorted = nums.slice().sort((a,b)=> a - b);
+  const length =  sorted.length;
+  const middle  = length/ 2 - 1;
+  return isEven(length)? average([sorted[middle] , sorted[middle + 1]]) 
+    : sorted[Math.ceil(middle)];  
+}
+
+
 
 //funcion generar rango de numero
 const range = (start, end) =>
