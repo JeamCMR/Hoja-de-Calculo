@@ -6,6 +6,7 @@ const charRange = (start,end) =>
 range(start.charCodeAt(0),end.charCodeAt(0)).map(code => String.fromCharCode(code)); //Rango de letras
 
 window.onload = () => {
+ 
   const container = document.getElementById("container");
   const createLabel = (name) => {
     const label = document.createElement("div"); //Crea una variable la cual es un elemento div
@@ -15,7 +16,18 @@ window.onload = () => {
   };
   const letters = charRange("A","J");
   letters.forEach(createLabel)
+  range(1,99).forEach(number =>{
+    createLabel(number)
+    letters.forEach(letter => {
+      const input = document.createElement("input");
+      input.type ="text";
+      input.id = letter + number;
+      input.ariaLabel = letter + number;
+      container.appendChild(input)
+    });
+  });
 };
+
 
 
 

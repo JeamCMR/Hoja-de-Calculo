@@ -12,3 +12,10 @@
     vertical-align: middle;
     line-height: 30px;
   }
+
+  input{
+    border-color: rgb(212,212,212);
+    border-width: 0.1px;
+    border-style: double;
+   
+  }
