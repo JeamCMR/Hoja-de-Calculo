@@ -1,5 +1,10 @@
 /**VARIABLES */
 
+const range = (start,end) => Array(end - start + 1).fill(start).map((element,index)=> element + index); //Crea un array de numeeros 
+
+const charRange = (start,end) => 
+range(start.charCodeAt(0),end.charCodeAt(0)).map(code => String.fromCharCode(code)); //Rango de letras
+
 window.onload = () => {
   const container = document.getElementById("container");
   const createLabel = (name) => {
@@ -8,4 +13,10 @@ window.onload = () => {
     label.textContent = name; // le agrega contenido al elemento con el paramentro de la funcion interna
     container.appendChild(label); // agrega el elmento creado al div container
   };
+  const letters = charRange("A","J");
+  letters.forEach(createLabel)
 };
+
+
+
+
