@@ -1,6 +1,11 @@
 /**VARIABLES */
 
-const infixToFunction  = {}
+const infixToFunction = {
+  "+": (x, y) => x + y,
+  "-": (x, y) => x - y,
+  "*": (x, y) => x * y,
+  "/": (x, y) => x / y,
+}
 
 //Validar si un numero es par o impar, devuelve un boolean
 const isEven = (num) => num % 2 === 0 ? true : false
