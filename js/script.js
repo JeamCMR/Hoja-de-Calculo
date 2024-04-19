@@ -7,6 +7,16 @@ const infixToFunction = {
   "/": (x, y) => x / y,
 }
 
+//Funcion para evaluar funciones infijas
+const infixEval = (str , regex) => str.replace(regex, (_match,arg1,operator,arg2) => 
+infixToFunction[operator](parseFloat(arg1),parseFloat(arg2)));
+
+const highPrecedence = str => {
+  const regex = /([\d.]+)([*\/])([\d.]+)/;
+  const str2 = infixEval(str, regex);
+  return str2 === str ? str: highPrecedence(str2);
+}
+
 //Validar si un numero es par o impar, devuelve un boolean
 const isEven = (num) => num % 2 === 0 ? true : false
 
@@ -71,20 +81,18 @@ window.onload = () => {
   };
   const letters = charRange("A", "J");
   letters.forEach(createLabel);
-  range(1, 99).forEach((number) => {
+  range(1, 99).forEach(number => {
     createLabel(number);
-    letters.forEach((letter) => {
+    letters.forEach(letter => {
       const input = document.createElement("input");
       input.type = "text";
       input.id = letter + number;
       input.ariaLabel = letter + number;
-
       input.onchange = update;
       container.appendChild(input);
-    });
-  });
-};
-
+    })
+  })
+} 
 
 const update = (event) =>{
   const element = event.target;
