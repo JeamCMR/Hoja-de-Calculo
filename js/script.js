@@ -39,9 +39,20 @@ const median = (nums) => {
 
 //Funciones de hoja de calculo
 const spreadsheetFunctions = {
+  '':arg => arg,
   sum,
   average,
   median,
+  even:(nums)=> nums.filter(isEven),
+  someeven: nums => nums.some(num => isEven(num)),
+  everyeven : nums => nums.every(isEven),
+  firsttwo: nums => nums.slice(0,2),
+  lasttwo: nums => nums.slice (-2),
+  has2: nums => nums.includes(2),
+  increment : nums => nums.map(num => num + 1),
+  random: ([x, y]) => Math.floor(Math.random() * y + x),
+  range: nums => range(...nums),
+  nodupes: nums => [...new Set(nums).values()]
 };
 
 //Aplica la funcion de calculo
@@ -80,6 +91,7 @@ const charRange = (start, end) =>
     const cellRegex = /[A-J][1-9][0-9]?/gi;
     const cellExpanded = rangeExpanded.replace(cellRegex, match => idToText(match.toUpperCase()));
     const functionExpanded = applyFunction(cellExpanded);
+    return functionExpanded === x ? functionExpanded :evalFormula(functionExpanded,cells);
   }
 
 
@@ -110,6 +122,6 @@ const update = (event) =>{
   const element = event.target;
   const value = element.value.replace(/\s/g, "");
   if (!value.includes(element.id) && value.charAt(0) === "=") {
-    
+    element.value = evalFormula(value.slice(1), Array.from(document.getElementById("container").children));
   }
 }
